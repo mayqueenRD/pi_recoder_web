@@ -1,0 +1,14 @@
+#!/bin/bash
+# Author: Wig
+
+if [[ "$1" == "-c" ]]; then
+    rm disk_list
+    lsblk -ln -o NAME,SIZE | grep 'sd' > disk_list
+elif [[ "$1" == "-m" ]]; then
+    echo "0616" | sudo -S mount /dev/"$2" $HOME/mnt
+    echo "Mounted!"
+elif [[ "$1" == "-u" ]]; then
+    echo "raspberry" | sudo -S umount $HOME/mnt
+    echo "Unmounted!"
+fi
+
